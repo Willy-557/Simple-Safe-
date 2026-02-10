@@ -38,7 +38,9 @@ class RekeningBank {
         
     }
     
-    
+    public void cekSaldo() {
+        System.out.println("Saldo yang anda miliki di rekening sebesar Rp " + saldo + "."); 
+    }
 }
 public class SimpleSafe {
     public static void main(String[] args) {
