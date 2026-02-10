@@ -22,6 +22,22 @@ class RekeningBank {
         }
     }
     
+    public void tarikTunai (double nominalTarikan, String pinInput) {
+        if (this.pin.equals(pinInput)) {
+            if (nominalTarikan > saldo) {
+            System.out.println("Saldo yang anda miliki di rekening tidak cukup!");
+            }
+            else {
+                this.saldo -= nominalTarikan;
+                System.out.println("Berhasil melakukan penarikan tunai sebesar Rp " + nominalTarikan + ".");
+            }
+        }
+        else {
+            System.out.println("Pin yang anda inputkan salah! Silahkan dicoba lagi!");
+        }
+        
+    }
+    
     
 }
 public class SimpleSafe {
