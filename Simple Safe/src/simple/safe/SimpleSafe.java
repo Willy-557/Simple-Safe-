@@ -12,7 +12,15 @@ class RekeningBank {
         this.pin = pin;
     }
     
-    
+    public void setorTunai (double jumlah) {
+        if (jumlah <= 0) {
+            System.out.println("Uang yang anda setorkan kurang dari Rp 0");
+        }
+        else {
+            this.saldo += jumlah;
+            System.out.println("Berhasil menyetorkan uang ke rekening sebesar Rp " + jumlah + ".");
+        }
+    }
     
     
 }
