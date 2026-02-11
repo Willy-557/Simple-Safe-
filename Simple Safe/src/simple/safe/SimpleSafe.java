@@ -28,13 +28,16 @@ class RekeningBank {
         }
     }
     
-    public void Transfer1 (int nominalYangAkanDiterima) {
-        this.saldo += nominalYangAkanDiterima;
-        System.out.println("Berhasil melakukan transfer ke rekening a/n '" + namaPemilik + "' dengan nominal Rp " + nominalYangAkanDiterima +".");
-    }
-    
-    public void Transfer2 (int nominalYangAkanDiTf) {
-        this.saldo -= nominalYangAkanDiTf;
+    public void transferAntarRekening (RekeningBank RekeningPengirim, int nominalUang) {
+        if (nominalUang <= this.saldo) {
+            this.saldo -= nominalUang;
+            RekeningPengirim.setorTunai(nominalUang);
+            System.out.println("Berhasil melakukan transfer ke rekening a/n '" + RekeningPengirim.namaPemilik + "' dengan nominal Rp " + nominalUang +".");
+        }
+        
+        else {
+            System.out.print("Maaf, saldo di rekening anda tidak men-cukupi");
+        }
     }
 
     public void tarikTunai (int nominalTarikan) {
@@ -124,12 +127,11 @@ public class SimpleSafe {
                                     System.out.println("Masukkan nominal uang yang ingin di-transfer: ");
                                     int uangTransfer = scanner.nextInt();
                                     
-//                                    for (int nomorPinAtm : daftarAkun.keySet()){
                                         if (daftarAkun.containsKey(pinAtmTransfer)){
-                                            RekeningBank Transfer = daftarAkun.get(pinAtmTransfer);
-                                            Transfer.Transfer1(uangTransfer);
-//                                            Transfer.Transfer2(uangTransfer);
-//                                            break;
+                                            RekeningBank Transfer1 = daftarAkun.get(pinAtmTransfer);
+                                            RekeningBank Transfer2 = daftarAkun.get(pinATM);
+
+                                            Transfer2.transferAntarRekening(Transfer1 ,uangTransfer);
                                         }
                                         else {
                                             System.out.println("No rekening '" + pinAtmTransfer + "' tidak ter-daftar");
@@ -145,7 +147,7 @@ public class SimpleSafe {
                         }
                     }
                 }
-            }
+        
             else if (opsi == 2) {
                 System.out.print("Masukkan pin baru : ");
                 int pinAtmBaru = scanner.nextInt();
@@ -160,16 +162,8 @@ public class SimpleSafe {
                 else {
                     int saldoBaru = 0;
                     RekeningBank rekeningBaru = new RekeningBank (namaRekeningBaru, saldoBaru);
-                    
-                    if (daftarAkun.containsKey(pinAtmBaru)) {
-                        System.out.println("Rekening anda bernama '" + namaRekeningBaru + "' sudah ada!");
-                        continue;
-                    }
-                    else {
-                        daftarAkun.put(pinAtmBaru, rekeningBaru);
-                        System.out.println("Berhasil membuat rekening a/n '" + namaRekeningBaru + "'.");
-                    }
-                    
+                    daftarAkun.put(pinAtmBaru, rekeningBaru);
+                    System.out.println("Berhasil membuat rekening a/n '" + namaRekeningBaru + "'.");
                 }
             }
             else if (opsi == 3) {
@@ -180,8 +174,6 @@ public class SimpleSafe {
                 System.out.println("Harap masukkan nomor menu 1 - 3!");
                 continue;
             }
-
         }
     }
-
 }
