@@ -1,6 +1,10 @@
 
 package simple.safe;
 
+import java.util.Scanner;
+import java.util.HashMap;
+
+
 class RekeningBank {
     private String namaPemilik;
     private double saldo;
@@ -44,7 +48,10 @@ class RekeningBank {
 }
 public class SimpleSafe {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner (System.in);
+        HashMap <Integer, RekeningBank> daftarAkun = new HashMap<>();
         
+        while (true)
     }
 
 }
