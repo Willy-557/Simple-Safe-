@@ -136,7 +136,7 @@ public class SimpleSafe {
                                         else {
                                             System.out.println("No rekening '" + pinAtmTransfer + "' tidak ter-daftar");
                                         }
-                                    }
+                                    
                                     break;
                                     
                                 case 4:
@@ -147,6 +147,7 @@ public class SimpleSafe {
                         }
                     }
                 }
+            }
         
             else if (opsi == 2) {
                 System.out.print("Masukkan pin baru : ");
