@@ -124,11 +124,12 @@ public class SimpleSafe {
                                     System.out.println("Masukkan nominal uang yang ingin di-transfer: ");
                                     int uangTransfer = scanner.nextInt();
                                     
-                                    for (int nomorPinAtm : daftarAkun.keySet()){
-                                        if (nomorPinAtm == pinAtmTransfer){
-                                            RekeningBank Transfer = daftarAkun.get(nomorPinAtm);
+//                                    for (int nomorPinAtm : daftarAkun.keySet()){
+                                        if (daftarAkun.containsKey(pinAtmTransfer)){
+                                            RekeningBank Transfer = daftarAkun.get(pinAtmTransfer);
                                             Transfer.Transfer1(uangTransfer);
-                                            Transfer.Transfer2(uangTransfer);   
+//                                            Transfer.Transfer2(uangTransfer);
+//                                            break;
                                         }
                                         else {
                                             System.out.println("No rekening '" + pinAtmTransfer + "' tidak ter-daftar");
@@ -157,7 +158,8 @@ public class SimpleSafe {
                     System.out.println("Pin yang anda input sudah ada di sistem, silahkan login ulang!");
                 }
                 else {
-                    RekeningBank rekeningBaru = new RekeningBank (namaRekeningBaru, pinAtmBaru);
+                    int saldoBaru = 0;
+                    RekeningBank rekeningBaru = new RekeningBank (namaRekeningBaru, saldoBaru);
                     
                     if (daftarAkun.containsKey(pinAtmBaru)) {
                         System.out.println("Rekening anda bernama '" + namaRekeningBaru + "' sudah ada!");
