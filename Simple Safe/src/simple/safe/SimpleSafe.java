@@ -149,6 +149,7 @@ public class SimpleSafe {
                 System.out.print("Masukkan pin baru : ");
                 int pinAtmBaru = scanner.nextInt();
                 
+                scanner.nextLine();
                 System.out.print("Masukkan nama baru : ");
                 String namaRekeningBaru = scanner.nextLine();
                 
