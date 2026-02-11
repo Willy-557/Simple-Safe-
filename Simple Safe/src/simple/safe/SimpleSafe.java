@@ -139,6 +139,7 @@ public class SimpleSafe {
                                 case 4:
                                     RekeningBank PengecekanSaldo = daftarAkun.get(pinATM);
                                     PengecekanSaldo.cekSaldo();
+                                    break;
                             }   
                         }
                     }
