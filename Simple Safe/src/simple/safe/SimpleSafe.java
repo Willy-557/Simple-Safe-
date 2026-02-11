@@ -28,11 +28,11 @@ class RekeningBank {
         }
     }
     
-    public void transferAntarRekening (RekeningBank RekeningPengirim, int nominalUang) {
+    public void transferAntarRekening (RekeningBank RekeningTujuan, int nominalUang) {
         if (nominalUang <= this.saldo) {
             this.saldo -= nominalUang;
-            RekeningPengirim.setorTunai(nominalUang);
-            System.out.println("Berhasil melakukan transfer ke rekening a/n '" + RekeningPengirim.namaPemilik + "' dengan nominal Rp " + nominalUang +".");
+            RekeningTujuan.setorTunai(nominalUang);
+            System.out.println("Berhasil melakukan transfer ke rekening a/n '" + RekeningTujuan.namaPemilik + "' dengan nominal Rp " + nominalUang +".");
         }
         
         else {
