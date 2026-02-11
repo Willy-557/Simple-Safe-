@@ -18,7 +18,7 @@ class RekeningBank {
         System.out.println("Saldo yang anda miliki di rekening sebesar Rp " + this.saldo + "."); 
     }
     
-    public void setorTunai (double jumlah) {
+    public void setorTunai (int jumlah) {
         if (jumlah <= 0) {
             System.out.println("Uang yang anda setorkan kurang dari Rp 0");
         }
@@ -28,7 +28,7 @@ class RekeningBank {
         }
     }
     
-    public void tarikTunai (double nominalTarikan) {
+    public void tarikTunai (int nominalTarikan) {
         if (nominalTarikan > saldo) {
             System.out.println("Saldo yang anda miliki di rekening tidak cukup!");
         }
@@ -82,7 +82,7 @@ public class SimpleSafe {
                         else {
                             switch (choice) {
                                 case 1:
-                                    System.out.print("Masukkan nominal yang ingin ditarik: ");
+                                    System.out.print("Masukkan nominal uang yang ingin di-tarik: ");
                                     int nominalTarikTunai = scanner.nextInt();
                                     
                                     if (nominalTarikTunai % 50000 == 0) {
@@ -92,7 +92,21 @@ public class SimpleSafe {
                                     else {
                                         System.out.println("ATM Hanya bisa melakukan penarikan tunai dengan kelipatan Rp 50.000");
                                     }
-                            }
+                                    break;
+                                
+                                case 2:
+                                    System.out.println("Masukkan nominal uang yang ingin di-setorkan: ");
+                                    int nominalSetorTunai = scanner.nextInt();
+                                    
+                                    if (nominalSetorTunai % 50000 == 0) {
+                                        RekeningBank PenyetoranTunai = daftarAkun.get(pinATM);
+                                        PenyetoranTunai.setorTunai(nominalSetorTunai);
+                                    }
+                                    else {
+                                        System.out.println("Maaf, penyetoran tunai hanya bisa kelipatan Rp 50.000");
+                                    }
+                                    break;
+                            }   
                         }
                     }
                     
