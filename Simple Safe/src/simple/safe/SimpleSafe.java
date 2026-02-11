@@ -28,7 +28,7 @@ class RekeningBank {
         }
     }
     
-    public void tarikTunai (double nominalTarikan, String pinInput) {
+    public void tarikTunai (double nominalTarikan) {
         if (nominalTarikan > saldo) {
             System.out.println("Saldo yang anda miliki di rekening tidak cukup!");
         }
@@ -60,7 +60,41 @@ public class SimpleSafe {
                     System.out.println("No pin yang anda masukkan tidak ada di sistem, silahkan buat ulang!");
                 }
                 else {
-                    
+                    while (true) {
+                        System.out.println("Simple ATM (Hanya bisa Rp 50.000 untuk setor dan tarik tunai!");
+                        System.out.println("1. Tarik Tunai");
+                        System.out.println("2. Setor tunai");
+                        System.out.println("3. Transfer antar rekening");
+                        System.out.println("4. Keluar");
+
+                        System.out.print(">> ");
+                        int choice = scanner.nextInt();
+
+                        if (choice == 4) {
+                            System.out.println("Terimakasih!");
+                            break;
+                        } 
+                        
+                        else if (choice > 4 || choice < 1) {
+                            System.out.println("Invalid input! Anda hanya bisa meng-input menu 1 - 4!");
+                            continue;
+                        }
+                        else {
+                            switch (choice) {
+                                case 1:
+                                    System.out.print("Masukkan nominal yang ingin ditarik: ");
+                                    int nominalTarikTunai = scanner.nextInt();
+                                    
+                                    if (nominalTarikTunai % 50000 == 0) {
+                                        RekeningBank PenarikanTunai = daftarAkun.get(pinATM);
+                                        PenarikanTunai.tarikTunai(nominalTarikTunai);
+                                    }
+                                    else {
+                                        System.out.println("ATM Hanya bisa melakukan penarikan tunai dengan kelipatan Rp 50.000");
+                                    }
+                            }
+                        }
+                    }
                     
                 }
             }
