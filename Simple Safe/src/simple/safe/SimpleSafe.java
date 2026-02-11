@@ -49,18 +49,26 @@ public class SimpleSafe {
             System.out.println("2. Sign Up");
             System.out.println("3. Exit");
             
-            System.out.println(">> ");
+            System.out.print(">> ");
             int opsi = scanner.nextInt();
             
             if (opsi == 1) {
-                System.out.println("Masukkan pin atm : ");
+                System.out.print("Masukkan pin atm : ");
                 int pinATM = scanner.nextInt();
+                
+                if (!daftarAkun.containsKey(pinATM)) {
+                    System.out.println("No pin yang anda masukkan tidak ada di sistem, silahkan buat ulang!");
+                }
+                else {
+                    
+                    
+                }
             }
             else if (opsi == 2) {
-                System.out.println("Masukkan pin baru : ");
+                System.out.print("Masukkan pin baru : ");
                 int pinAtmBaru = scanner.nextInt();
                 
-                System.out.println("Masukkan nama baru : ");
+                System.out.print("Masukkan nama baru : ");
                 String namaRekeningBaru = scanner.nextLine();
                 
                 if (daftarAkun.containsKey(pinAtmBaru)) {
