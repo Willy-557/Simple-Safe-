@@ -36,10 +36,6 @@ class RekeningBank {
     public void Transfer2 (int nominalYangAkanDiTf) {
         this.saldo -= nominalYangAkanDiTf;
     }
-    
-    void namaPemilikRekening(int pinAtm) {
-        System.out.println(namaPemilik);
-    }
 
     public void tarikTunai (int nominalTarikan) {
         if (nominalTarikan > saldo) {
@@ -52,10 +48,6 @@ class RekeningBank {
         }
     }
 
-    
-
-    
-    
 public class SimpleSafe {
     public static void main(String[] args) {
         Scanner scanner = new Scanner (System.in);
@@ -144,7 +136,9 @@ public class SimpleSafe {
                                     }
                                     break;
                                     
-                                    
+                                case 4:
+                                    RekeningBank PengecekanSaldo = daftarAkun.get(pinATM);
+                                    PengecekanSaldo.cekSaldo();
                             }   
                         }
                     }
