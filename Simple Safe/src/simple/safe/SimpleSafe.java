@@ -28,6 +28,19 @@ class RekeningBank {
         }
     }
     
+    public void Transfer1 (int nominalYangAkanDiterima) {
+        this.saldo += nominalYangAkanDiterima;
+        System.out.println("Berhasil melakukan transfer ke rekening a/n '" + namaPemilik + "' dengan nominal Rp " + nominalYangAkanDiterima +".");
+    }
+    
+    public void Transfer2 (int nominalYangAkanDiTf) {
+        this.saldo -= nominalYangAkanDiTf;
+    }
+    
+    void namaPemilikRekening(int pinAtm) {
+        System.out.println(namaPemilik);
+    }
+
     public void tarikTunai (int nominalTarikan) {
         if (nominalTarikan > saldo) {
             System.out.println("Saldo yang anda miliki di rekening tidak cukup!");
@@ -38,6 +51,10 @@ class RekeningBank {
             }
         }
     }
+
+    
+
+    
     
 public class SimpleSafe {
     public static void main(String[] args) {
@@ -65,17 +82,18 @@ public class SimpleSafe {
                         System.out.println("1. Tarik Tunai");
                         System.out.println("2. Setor tunai");
                         System.out.println("3. Transfer antar rekening");
-                        System.out.println("4. Keluar");
+                        System.out.println("4. Cek saldo");
+                        System.out.println("5. Keluar");
 
                         System.out.print(">> ");
                         int choice = scanner.nextInt();
 
-                        if (choice == 4) {
+                        if (choice == 5) {
                             System.out.println("Terimakasih!");
                             break;
                         } 
                         
-                        else if (choice > 4 || choice < 1) {
+                        else if (choice > 5 || choice < 1) {
                             System.out.println("Invalid input! Anda hanya bisa meng-input menu 1 - 4!");
                             continue;
                         }
@@ -106,10 +124,30 @@ public class SimpleSafe {
                                         System.out.println("Maaf, penyetoran tunai hanya bisa kelipatan Rp 50.000");
                                     }
                                     break;
+                                
+                                case 3:
+                                    System.out.println("Masukkan no rekening yang ingin di-transfer: ");
+                                    int pinAtmTransfer = scanner.nextInt();
+                                    
+                                    System.out.println("Masukkan nominal uang yang ingin di-transfer: ");
+                                    int uangTransfer = scanner.nextInt();
+                                    
+                                    for (int nomorPinAtm : daftarAkun.keySet()){
+                                        if (nomorPinAtm == pinAtmTransfer){
+                                            RekeningBank Transfer = daftarAkun.get(nomorPinAtm);
+                                            Transfer.Transfer1(uangTransfer);
+                                            Transfer.Transfer2(uangTransfer);   
+                                        }
+                                        else {
+                                            System.out.println("No rekening '" + pinAtmTransfer + "' tidak ter-daftar");
+                                        }
+                                    }
+                                    break;
+                                    
+                                    
                             }   
                         }
                     }
-                    
                 }
             }
             else if (opsi == 2) {
