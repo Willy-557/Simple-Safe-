@@ -8,12 +8,14 @@ import java.util.HashMap;
 class RekeningBank {
     private String namaPemilik;
     private double saldo;
-    private String pin;
     
-    public RekeningBank (String namaPemilik, double saldo, String pin) {
+    public RekeningBank (String namaPemilik, double saldo) {
         this.namaPemilik = namaPemilik;
         this.saldo = saldo;
-        this.pin = pin;
+    }
+    
+    public void cekSaldo() {
+        System.out.println("Saldo yang anda miliki di rekening sebesar Rp " + this.saldo + "."); 
     }
     
     public void setorTunai (double jumlah) {
@@ -27,31 +29,67 @@ class RekeningBank {
     }
     
     public void tarikTunai (double nominalTarikan, String pinInput) {
-        if (this.pin.equals(pinInput)) {
-            if (nominalTarikan > saldo) {
+        if (nominalTarikan > saldo) {
             System.out.println("Saldo yang anda miliki di rekening tidak cukup!");
-            }
-            else {
-                this.saldo -= nominalTarikan;
-                System.out.println("Berhasil melakukan penarikan tunai sebesar Rp " + nominalTarikan + ".");
-            }
         }
         else {
-            System.out.println("Pin yang anda inputkan salah! Silahkan dicoba lagi!");
+            this.saldo -= nominalTarikan;
+            System.out.println("Berhasil melakukan penarikan tunai sebesar Rp " + nominalTarikan + ".");
+            }
         }
-        
     }
     
-    public void cekSaldo() {
-        System.out.println("Saldo yang anda miliki di rekening sebesar Rp " + saldo + "."); 
-    }
-}
 public class SimpleSafe {
     public static void main(String[] args) {
         Scanner scanner = new Scanner (System.in);
         HashMap <Integer, RekeningBank> daftarAkun = new HashMap<>();
         
-        while (true)
+        while (true) {
+            System.out.println("1. Log In");
+            System.out.println("2. Sign Up");
+            System.out.println("3. Exit");
+            
+            System.out.println(">> ");
+            int opsi = scanner.nextInt();
+            
+            if (opsi == 1) {
+                System.out.println("Masukkan pin atm : ");
+                int pinATM = scanner.nextInt();
+            }
+            else if (opsi == 2) {
+                System.out.println("Masukkan pin baru : ");
+                int pinAtmBaru = scanner.nextInt();
+                
+                System.out.println("Masukkan nama baru : ");
+                String namaRekeningBaru = scanner.nextLine();
+                
+                if (daftarAkun.containsKey(pinAtmBaru)) {
+                    System.out.println("Pin yang anda input sudah ada di sistem, silahkan login ulang!");
+                }
+                else {
+                    RekeningBank rekeningBaru = new RekeningBank (namaRekeningBaru, pinAtmBaru);
+                    
+                    if (daftarAkun.containsKey(pinAtmBaru)) {
+                        System.out.println("Rekening anda bernama '" + namaRekeningBaru + "' sudah ada!");
+                        continue;
+                    }
+                    else {
+                        daftarAkun.put(pinAtmBaru, rekeningBaru);
+                        System.out.println("Berhasil membuat rekening a/n '" + namaRekeningBaru + "'.");
+                    }
+                    
+                }
+            }
+            else if (opsi == 3) {
+                System.out.println("Terimakasih!");
+                break;
+            }
+            else {
+                System.out.println("Harap masukkan nomor menu 1 - 3!");
+                continue;
+            }
+
+        }
     }
 
 }
