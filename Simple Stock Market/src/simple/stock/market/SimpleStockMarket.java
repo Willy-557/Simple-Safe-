@@ -39,7 +39,16 @@ public class SimpleStockMarket {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws InterruptedException {
-        
+        public void updatePasar() {
+        int r1 = r.nextInt(1001) - 500;
+        this.hargaSaham += r1;
+
+        if (r1 < 50) {
+            this.hargaSaham = 50;
+        }
+
+        System.out.println("Saham " + this.kodeSaham + " : Rp " + (int)this.hargaSaham + ".");
+    }
          
     }
 }
