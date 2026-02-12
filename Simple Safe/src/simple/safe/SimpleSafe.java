@@ -4,7 +4,6 @@ package simple.safe;
 import java.util.Scanner;
 import java.util.HashMap;
 
-
 class RekeningBank {
     private String namaPemilik;
     private double saldo;
