@@ -39,16 +39,19 @@ public class SimpleStockMarket {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws InterruptedException {
-        public void updatePasar() {
-        int r1 = r.nextInt(1001) - 500;
-        this.hargaSaham += r1;
+        Saham sahamBaru1 = new Saham ("BBCA", 400);
+        Saham sahamBaru2 = new Saham ("ANTM", 700);
+        Saham sahamBaru3 = new Saham ("BUMI", 100);
+        
+        while (true) {
+            System.out.println("--- Update Pasar ---");
+            
+            sahamBaru1.updatePasar();
+            sahamBaru2.updatePasar();
+            sahamBaru3.updatePasar();
+            
+            Thread.sleep(2000);
 
-        if (r1 < 50) {
-            this.hargaSaham = 50;
         }
-
-        System.out.println("Saham " + this.kodeSaham + " : Rp " + (int)this.hargaSaham + ".");
-    }
-         
     }
 }
